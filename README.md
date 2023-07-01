@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# React Js 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Single PAge
+- part of multi pages
+- UI library to make components
+- componenets is a combination of HTML CSS JS 
 
-## Available Scripts
 
-In the project directory, you can run:
+### Create Create App
+```js
+npx create-react-app testapp
+```
+### Run React app
+```js
+npxm start  || yarn start
+// yarn install
+// Yarn is a package manager for JavaScript that helps manage project dependencies
+//  Yarn provides a more efficient and reliable way to install, update, and manage dependencies in a project.
+// run yarn init to create a package.json file if you don't already have one, and use commands like yarn add to install dependencies or yarn remove to uninstall them.
+```
 
-### `npm start`
+## All Steps 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. Run App
+- after creating react app delete unnecessary files 
+- Manage all file and error solve and create custome page
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. Components.
+- Components are reusable and self-contained building blocks in software development, often used in the context of user interface (UI) development. Components encapsulate a set of related functionality and visual elements, allowing them to be reused across different parts of an application.
 
-### `npm test`
+- if we use any components  then first import them .
+- if we create multi function in one components then need to custome export using => {} 
+```js
+import {test1,test2} from '/components/maintest'
+```
+- pass any values in function
+```js
+const HomePage = ({name}) => {
+     return (
+    <div>My Name Is {name}</div>
+    
+  )
+}
+//  Here name get from another components like name = " Jay"  => <HomePage name="jay"/>
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+- if we need repeat components then use map function and pass data in map peramiters
+```js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+data = ["Jay","Salman","Babita"]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+{data.map((name,index) => (
+          <HomePage name={name} key={index}/>
+        ))}
+```
+- Refrence => HomePage.jsx
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### 3. Events
+- In React, events are a way to handle user interactions, such as clicking a button, typing in an input field, or hovering over an element. React provides a synthetic event system that normalizes the handling of events across different browsers.
+- if we need any event when we click some button then print somthing then use onclick function 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```js
+// Not Use
+<button onClick={ console.log(" Im Clicked")}> Im BTN </button>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// bBut this is alredy print without clicking so use anonemuse function 
+//  Use
+<button onClick={()=> console.log(" Im Clicked")}> Im BTN </button>
+```
+- use function and pass only not call
+- create seprate function and pass in onclick event ,so when we click btn then they call function using refrance name
+- Refrence => EvenetPage.jsx
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 4. State, Hooks
+##### State :
+- In React, state is a JavaScript object that holds data that can change over time and influences the rendering of components. State allows you to manage and update data within a component, enabling dynamic and interactive user interfaces.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```js
+const [number,setNumber]= useState(0);
+//  Here number is a output value  => State Variable
+//  setNumber is a set value where effect to number value => function thet chnage state
+// usestate => default value
+```
 
-## Learn More
+- chnage data seprately with all components copy,and chnage value dynamicly
+- Where use Usestate => Where we need chnagiding data time ly then use usestate
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5. Managing State
+- if we need pasing data from another components to another components use pasing function systme
+- in FormPage.jsx exmple
+     - create Form
+     - get onchnage function and get value of input fild 
+     - cretae usestate and add new data in state varivale uisng setUser
+     - need main root dataset where all data are store then, we pass main function into components and recive at other      
+       components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+// main app
+  function adduser(userdata){
 
-### Code Splitting
+    setuser([...user,userdata]);
+  }
+   <FormPage dataget={adduser}/>
+//    form componentt
+   const FormPage = ({dataget}) => {}
+//  and use dataget to send new form data
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### 6. UseEffect
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- The useEffect hook in React is used to perform side effects in functional components. Side effects refer to any code that interacts with the outside world, such as fetching data, subscribing to events, or manipulating the DOM.
 
-### Making a Progressive Web App
+```js
+useEffect(() => {},[edit])
+// anty time edit are chnages then useeffect function are call
+// jyare jyare edit chnage thase tyare ryare effect function run thase
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 7. Context API, useContect
+- The Context API is a feature provided by React that allows you to manage global state and share data between components without the need for prop drilling (passing data through multiple levels of components).
 
-### Deployment
+- why use => bija ma su thatu ke koy data pass karva dar vakh te ek ma thi bija and bija mathi tija component ma pass karava pade je bo complex they jay so we use context api use kare to direct access kari sakay
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```js
+// Creating a context
+const ContextAPI = createContext("Data is jay falanu dheknu")
+// Consuming a context
+const Contextnew = useContext(ContextAPI)
+//  Use anywhere in any componenet while uisng this 
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+``
